@@ -24,8 +24,8 @@ class _ShopDashboardScreenState extends State<ShopDashboardScreen> {
   late List<ShopOrder> _orders;
   int _acceptedOrdersCount = 0;
   int _rejectedOrdersCount = 0;
-  int _parcelHandoverCount = 0;
-  int _successfullyDeliveredCount = 0;
+  final int _parcelHandoverCount = 0;
+  final int _successfullyDeliveredCount = 0;
   bool _storeOpen = true;
 
   int get _todaysEarns => _orders.fold(0, (sum, order) => sum + order.totalPrice);

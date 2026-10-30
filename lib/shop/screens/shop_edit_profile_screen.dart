@@ -292,8 +292,15 @@ class _ShopEditProfileScreenState extends State<ShopEditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, dynamic result) async {
+        if (didPop) return;
+        final shouldPop = await _onWillPop();
+        if (shouldPop && context.mounted) {
+          Navigator.pop(context);
+        }
+      },
       child: Scaffold(
         backgroundColor: const Color(0xFFF7F8FA),
         appBar: AppBar(
@@ -304,7 +311,9 @@ class _ShopEditProfileScreenState extends State<ShopEditProfileScreen> {
             icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primaryText, size: 20),
             onPressed: () async {
               if (await _onWillPop()) {
-                Navigator.pop(context);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               }
             },
           ),
@@ -420,7 +429,7 @@ class _ShopEditProfileScreenState extends State<ShopEditProfileScreen> {
                       child: _localImagePath != null
                           ? Image.file(File(_localImagePath!), fit: BoxFit.cover)
                           : _existingImagePath != null
-                              ? Image.asset(_existingImagePath!, fit: BoxFit.cover, errorBuilder: (_, __, ___) => const Icon(Icons.store, color: AppColors.secondaryText, size: 40))
+                              ? Image.asset(_existingImagePath!, fit: BoxFit.cover, errorBuilder: (_, _, _) => const Icon(Icons.store, color: AppColors.secondaryText, size: 40))
                               : const Icon(Icons.store, color: AppColors.secondaryText, size: 40),
                     ),
                   ),

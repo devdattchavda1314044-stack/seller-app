@@ -452,7 +452,7 @@ class _ShopProfileScreenState extends State<ShopProfileScreen> {
                           ),
                           child: ClipOval(
                             child: profile.profileImage != null && profile.profileImage!.startsWith('assets/')
-                                ? Image.asset(profile.profileImage!, fit: BoxFit.cover, errorBuilder: (_, __, ___) => const Icon(Icons.store, color: AppColors.secondaryText, size: 30))
+                                ? Image.asset(profile.profileImage!, fit: BoxFit.cover, errorBuilder: (_, _, _) => const Icon(Icons.store, color: AppColors.secondaryText, size: 30))
                                 : (profile.profileImage != null 
                                     ? Image.file(File(profile.profileImage!), fit: BoxFit.cover)
                                     : const Icon(Icons.store, color: AppColors.secondaryText, size: 30)),

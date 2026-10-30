@@ -61,9 +61,9 @@ class _ShopLocationPickerScreenState extends State<ShopLocationPickerScreen> {
               initialCenter: _currentCenter,
               initialZoom: 14.0,
               onPositionChanged: (position, hasGesture) {
-                if (hasGesture && position.center != null) {
+                if (hasGesture) {
                   setState(() {
-                    _currentCenter = position.center!;
+                    _currentCenter = position.center;
                   });
                 }
               },

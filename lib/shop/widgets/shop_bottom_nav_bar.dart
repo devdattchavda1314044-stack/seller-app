@@ -91,8 +91,8 @@ class ShopBottomNavBar extends StatelessWidget {
                 ),
                 child: ClipOval(
                   child: avatarPath.startsWith('assets/')
-                      ? Image.asset(avatarPath, fit: BoxFit.cover, errorBuilder: (_, __, ___) => Icon(isActive ? activeIcon : icon, color: isActive ? AppColors.primary : AppColors.secondaryText, size: 22))
-                      : Image.file(File(avatarPath), fit: BoxFit.cover, errorBuilder: (_, __, ___) => Icon(isActive ? activeIcon : icon, color: isActive ? AppColors.primary : AppColors.secondaryText, size: 22)),
+                      ? Image.asset(avatarPath, fit: BoxFit.cover, errorBuilder: (_, _, _) => Icon(isActive ? activeIcon : icon, color: isActive ? AppColors.primary : AppColors.secondaryText, size: 22))
+                      : Image.file(File(avatarPath), fit: BoxFit.cover, errorBuilder: (_, _, _) => Icon(isActive ? activeIcon : icon, color: isActive ? AppColors.primary : AppColors.secondaryText, size: 22)),
                 ),
               )
             else

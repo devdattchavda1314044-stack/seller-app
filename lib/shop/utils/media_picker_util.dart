@@ -78,7 +78,7 @@ class MediaPickerUtil {
       try {
         final List<PlatformFile> result = await FilePicker.pickFiles(
           type: FileType.image,
-          allowMultiple: true,
+
         );
         if (result.isNotEmpty) {
           debugPrint('Picked ${result.length} file images.');

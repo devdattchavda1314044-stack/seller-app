@@ -60,7 +60,7 @@ class _ExpandableAddFabState extends State<ExpandableAddFab> with SingleTickerPr
         // Expanded Options
         SizeTransition(
           sizeFactor: _expandAnimation,
-          axisAlignment: 1.0,
+          alignment: Alignment.bottomCenter,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [

@@ -1,4 +1,5 @@
 /// Data models for shop order items.
+library;
 
 class ShopOrderProduct {
   final String name;

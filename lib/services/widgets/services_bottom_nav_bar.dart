@@ -135,7 +135,7 @@ class ServicesBottomNavBar extends StatelessWidget {
                             ? Image.asset(
                                 avatarPath,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => Icon(
+                                errorBuilder: (_, _, _) => Icon(
                                   isActive ? activeIcon : icon,
                                   color: isActive
                                       ? AppColors.primary
@@ -146,7 +146,7 @@ class ServicesBottomNavBar extends StatelessWidget {
                             : Image.file(
                                 File(avatarPath),
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => Icon(
+                                errorBuilder: (_, _, _) => Icon(
                                   isActive ? activeIcon : icon,
                                   color: isActive
                                       ? AppColors.primary

@@ -30,7 +30,7 @@ class ShopDashboardCard extends StatelessWidget {
         color: data.cardColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: data.accentColor.withOpacity(0.25),
+          color: data.accentColor.withValues(alpha: 0.25),
           width: 1.0,
         ),
       ),
@@ -48,7 +48,7 @@ class ShopDashboardCard extends StatelessWidget {
                 child: Icon(
                   data.icon,
                   size: 64,
-                  color: data.accentColor.withOpacity(0.12),
+                  color: data.accentColor.withValues(alpha: 0.12),
                 ),
               ),
             ),
