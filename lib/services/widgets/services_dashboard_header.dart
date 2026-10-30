@@ -1,83 +1,123 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
 
-/// Clean, minimal dashboard header with profile, title, and settings.
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_tokens.dart';
+
+/// Dashboard header — app identity bar with profile, business name, and actions.
+///
+/// Same layout as `ShopDashboardHeader`: 40dp avatar on the left, name over a
+/// quiet subtitle, then the bell and settings as square tiles. The services
+/// version previously centred the title and dropped the bell, which made the
+/// two modules read as two different apps on the first screen after login.
+/// Only the avatar glyph differs, because a services seller is a tradesperson
+/// rather than a storefront.
 class ServicesDashboardHeader extends StatelessWidget {
   final String title;
 
-  const ServicesDashboardHeader({super.key, required this.title});
+  /// Shown under the name. Defaults to the same words Shop uses.
+  final String subtitle;
+
+  const ServicesDashboardHeader({
+    super.key,
+    required this.title,
+    this.subtitle = 'Seller Dashboard',
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
-          child: Row(
-            children: [
-              // Left — Small Profile Avatar
-              Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3F4F6),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: const Color(0xFFE5E7EB),
-                    width: 1.0,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.person_outline_rounded,
-                  color: AppColors.secondaryText,
-                  size: 18,
-                ),
-              ),
+    return Container(
+      color: AppTokens.surface,
+      padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+      child: Row(
+        children: [
+          // Profile avatar
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: const Color(0xFFEEF0F3),
+              shape: BoxShape.circle,
+              border: Border.all(color: AppTokens.borderField, width: 1.0),
+            ),
+            child: Icon(
+              Icons.handyman_outlined,
+              color: AppColors.primary.withValues(alpha: 0.7),
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 12),
 
-              // Center — Seller Name
-              Expanded(
-                child: Text(
+          // Business name + subtitle
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
                   title,
-                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                     color: AppColors.primaryText,
-                    letterSpacing: 0.3,
+                    height: 1.2,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
-
-              // Right — Small Settings Icon with adequate touch target
-              SizedBox(
-                width: 32,
-                height: 32,
-                child: IconButton(
-                  onPressed: () {},
-                  padding: EdgeInsets.zero,
-                  icon: const Icon(
-                    Icons.settings_outlined,
+                const SizedBox(height: 1),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
                     color: AppColors.secondaryText,
-                    size: 21,
+                    height: 1.2,
                   ),
-                  splashRadius: 20,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
 
-        // Light divider below header
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20.0),
-          height: 1.0,
-          color: const Color(0xFFF0F0F0),
+          // Notification bell
+          _HeaderIconButton(
+            icon: Icons.notifications_none_rounded,
+            onTap: () {},
+          ),
+          const SizedBox(width: 4),
+          // Settings
+          _HeaderIconButton(
+            icon: Icons.settings_outlined,
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HeaderIconButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _HeaderIconButton({required this.icon, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppTokens.radiusChip),
+      child: Container(
+        width: 38,
+        height: 38,
+        decoration: BoxDecoration(
+          color: AppTokens.pageBackground,
+          borderRadius: BorderRadius.circular(AppTokens.radiusChip),
+          border: Border.all(color: const Color(0xFFEEF0F3), width: 1.0),
         ),
-      ],
+        child: Icon(icon, color: AppColors.secondaryText, size: 20),
+      ),
     );
   }
 }

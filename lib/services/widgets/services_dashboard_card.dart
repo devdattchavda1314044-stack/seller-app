@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_tokens.dart';
+
 /// Data model for a single services dashboard stat card.
 class ServicesDashboardCardData {
   final IconData icon;
@@ -38,7 +40,7 @@ class ServicesDashboardCard extends StatelessWidget {
         color: data.cardColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: data.accentColor.withOpacity(0.25),
+          color: data.accentColor.withValues(alpha: 0.25),
           width: 1.0,
         ),
         // ZERO shadow
@@ -58,7 +60,7 @@ class ServicesDashboardCard extends StatelessWidget {
                   data.icon,
                   size: 64,
                   // Very low opacity for a subtle watermark
-                  color: data.accentColor.withOpacity(0.12),
+                  color: data.accentColor.withValues(alpha: 0.12),
                 ),
               ),
             ),
@@ -76,7 +78,7 @@ class ServicesDashboardCard extends StatelessWidget {
                       fontFamily: 'Poppins',
                       fontSize: 23, // Increased size
                       fontWeight: FontWeight.normal, // REGULAR text
-                      color: Color(0xFF4B5563),
+                      color: AppTokens.tertiaryText,
                       letterSpacing: 0.1,
                       height: 1.1, // compact line height
                     ),
@@ -115,7 +117,7 @@ class ServicesDashboardCard extends StatelessWidget {
                                   width: 8,
                                   height: 8,
                                   decoration: const BoxDecoration(
-                                    color: Color(0xFF22C55E),
+                                    color: AppTokens.success,
                                     shape: BoxShape.circle,
                                   ),
                                 ),
@@ -164,11 +166,16 @@ const _accentOrange = Color(0xFFE85D04);
 const _softPurple = Color(0xFFF0E9FF);
 const _accentPurple = Color(0xFF6D3FC0);
 
-/// Services seller dashboard cards.
+/// Static services cards, kept for the Startup stub.
+///
+/// The services dashboard builds its own set from the booking store and the
+/// listing catalogue, so these fixed numbers are no longer what a services
+/// seller sees. `StartupDashboardScreen` still renders them when its business
+/// type is Services, and that module has not been built out yet.
 const List<ServicesDashboardCardData> servicesCards = [
   ServicesDashboardCardData(
     icon: Icons.check_circle_outline,
-    title: 'Active\nServices', // Explicit 2 lines
+    title: 'Active\nServices',
     value: '12',
     subtitle: '',
     cardColor: _softBlue,
@@ -176,7 +183,7 @@ const List<ServicesDashboardCardData> servicesCards = [
   ),
   ServicesDashboardCardData(
     icon: Icons.grid_view_rounded,
-    title: 'Total\nServices', // Explicit 2 lines
+    title: 'Total\nServices',
     value: '28',
     subtitle: '',
     cardColor: _softRed,
@@ -184,7 +191,7 @@ const List<ServicesDashboardCardData> servicesCards = [
   ),
   ServicesDashboardCardData(
     icon: Icons.people_outline_rounded,
-    title: 'People\nInterested', // Explicit 2 lines
+    title: 'People\nInterested',
     value: '84',
     subtitle: '',
     cardColor: _softOrange,
@@ -192,12 +199,12 @@ const List<ServicesDashboardCardData> servicesCards = [
   ),
   ServicesDashboardCardData(
     icon: Icons.workspace_premium_outlined,
-    title: 'Current\nPlan', // Explicit 2 lines
+    title: 'Current\nPlan',
     value: 'Premium',
     subtitle: '',
     cardColor: _softPurple,
     accentColor: _accentPurple,
     showActiveBadge: true,
-    valueFontSize: 24.0, // Reduced font size for plan value
+    valueFontSize: 24.0,
   ),
 ];
